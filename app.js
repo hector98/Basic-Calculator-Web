@@ -88,6 +88,56 @@ function rest(num)
 	}
 }
 
+function multiply(num)
+{
+	let yes = operatorActual("*");
+	if(yes)
+	{
+		total = total_aux * num;
+		display.value = total;
+	}
+}
+
+function divide(num)
+{
+	let yes = operatorActual("/");
+	if(yes)
+	{
+		total = total_aux / num;
+		display.value = total;
+	}
+}
+
+function residue(num)
+{
+	let yes = operatorActual("%");
+	if(yes)
+	{
+		total = total_aux % num;
+		display.value = total;
+	}
+}
+
+function potency(num)
+{
+	let yes = operatorActual("^");
+	if(yes)
+	{
+		total = total_aux ** num;
+		display.value = total;
+	}
+}
+
+function root(num)
+{
+	let yes = operatorActual("√");
+	if(yes)
+	{
+		total = Math.sqrt(num);
+		display.value = total;
+	}
+}
+
 function equal()
 {
 	if(operator === "+")
@@ -102,11 +152,37 @@ function equal()
 		op["-"] += 1;
 		//operator = "";
 	}
+	else if(operator === "*")
+	{
+		multiply(parseFloat(display.value));
+		op["*"] += 1;
+		//operator = "";
+	}
+	else if(operator === "/")
+	{
+		divide(parseFloat(display.value));
+		op["/"] += 1;
+		//operator = "";
+	}
+	else if(operator === "%")
+	{
+		residue(parseFloat(display.value));
+		op["%"] += 1;
+		//operator = "";
+	}
+	else if(operator === "^")
+	{
+		potency(parseFloat(display.value));
+		op["^"] += 1;
+	}
 	else
 	{
 		display.value = total;
 	}
 }
+
+// Events Keyboard
+document.addEventListener("keydown",
 
 // Events Numbers
 btnN1.addEventListener("click", () => {
@@ -180,4 +256,34 @@ btnMinus.addEventListener("click", () => {
 	rest(parseFloat(display.value));
 	operator = "-";
 	op["-"] += 1;
+})
+
+btnMultiply.addEventListener("click", () => {
+	multiply(parseFloat(display.value));
+	operator = "*";
+	op["*"] += 1;
+})
+
+btnDivide.addEventListener("click", () => {
+	divide(parseFloat(display.value));
+	operator = "/";
+	op["/"] += 1;
+})
+
+btnResidue.addEventListener("click", () => {
+	residue(parseFloat(display.value));
+	operator = "%";
+	op["%"] += 1;
+})
+
+btnPotency.addEventListener("click", () => {
+	potency(parseFloat(display.value));
+	operator = "^";
+	op["^"] += 1;
+})
+
+btnRoot.addEventListener("click", () => {
+	root(parseFloat(display.value));
+	operator = "√";
+	op["√"] += 1;
 })
