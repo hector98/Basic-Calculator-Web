@@ -27,9 +27,13 @@ let total = 0;
 let total_aux = 0;
 let operator = "";
 let op = {
-	"+": 0,
-	"-": 0,
-	"*": 0,
+	"+": 1,
+	"-": 1,
+	"*": 1,
+	"/": 1,
+	"%": 1,
+	"^": 1,
+	"√": 1
 };
 
 function writeDisplay(value) {
@@ -49,27 +53,38 @@ function writeDisplay(value) {
 	}
 }
 
-function plus(num)
+function operatorActual(op_num)
 {
-	if (total_aux != 0)
+	if(op[op_num] % 2 == 1)
 	{
-		total = 0;
-		total = total_aux + num;
-
-		if(op["+"] <= 1)
-		{
-			display.value = total;
-		}
-		else
-		{	
-			display.value = "";
-		}
+		total_aux = parseFloat(display.value);
+		display.value = "";
+		decimal = false;
+		return false;
 	}
 	else
 	{
-		total_aux = num;
-		display.value = "";
-		decimal = false;
+		return true;
+	}
+}
+
+function plus(num)
+{
+	let yes = operatorActual("+");
+	if(yes)
+	{
+		total = total_aux + num;
+		display.value = total;
+	}
+}
+
+function rest(num)
+{
+	let yes = operatorActual("-");
+	if(yes)
+	{
+		total = total_aux - num;
+		display.value = total;
 	}
 }
 
@@ -78,11 +93,18 @@ function equal()
 	if(operator === "+")
 	{
 		plus(parseFloat(display.value));
+		op["+"] += 1;
+		//operator = "";
+	}
+	else if(operator === "-")
+	{
+		rest(parseFloat(display.value));
+		op["-"] += 1;
 		//operator = "";
 	}
 	else
 	{
-		display.value = display.value;
+		display.value = total;
 	}
 }
 
@@ -152,4 +174,10 @@ btnPlus.addEventListener("click", () => {
 	plus(parseFloat(display.value));
 	operator = "+";
 	op["+"] += 1;
+})
+
+btnMinus.addEventListener("click", () => {
+	rest(parseFloat(display.value));
+	operator = "-";
+	op["-"] += 1;
 })
