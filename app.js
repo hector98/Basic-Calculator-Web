@@ -182,7 +182,45 @@ function equal()
 }
 
 // Events Keyboard
-document.addEventListener("keydown",
+document.addEventListener("keydown", function (event) {
+	var key = event.key;
+	
+	switch(key)
+	{
+		case "1":
+			writeDisplay("1");
+			break;
+		case "2":
+			writeDisplay("2");
+			break;
+		case "3":
+			writeDisplay("3");
+			break;
+		case "4":
+			writeDisplay("4");
+			break;
+		case "5":
+			writeDisplay("5");
+			break;
+		case "6":
+			writeDisplay("6");
+		case "7":
+			writeDisplay("7");
+			break;
+		case "8":
+			writeDisplay("8");
+			break;
+		case "9":
+			writeDisplay("9");
+			break;
+		case "0":
+			writeDisplay("0");
+			break;
+		case ".":
+			writeDisplay(".");
+			break;
+	}
+});
 
 // Events Numbers
 btnN1.addEventListener("click", () => {
