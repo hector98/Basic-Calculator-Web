@@ -133,7 +133,7 @@ function root(num)
 	let yes = operatorActual("√");
 	if(yes)
 	{
-		total = Math.sqrt(num);
+		total = total_aux ** (1/num);
 		display.value = total;
 	}
 }
@@ -174,6 +174,11 @@ function equal()
 	{
 		potency(parseFloat(display.value));
 		op["^"] += 1;
+	}
+	else if(operator === "√")
+	{
+		root(parseFloat(display.value));
+		op["√"] += 1;
 	}
 	else
 	{
